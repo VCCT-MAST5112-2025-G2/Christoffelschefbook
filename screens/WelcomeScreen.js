@@ -4,8 +4,8 @@ import { View, Text, Button, StyleSheet } from "react-native";
 export default function WelcomeScreen({ navigation }) {
     return (
         <View style={styles.container}>
+          <Image source={require('C:\Christoffelschefbook\Christoffelschefbook\screens\images\WelcomeScreen.png.png')} style={{stylesimage}} />
             <Text style={styles.title}>Welcome to Christoffel's Chef Book!</Text>
-            <Text style={styles.subtitle}>Your personal recipe manager.</Text>
             <Button
                 title="Get Started"
                 onPress={() => navigation.navigate('Home')}
@@ -21,4 +21,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+
+  image: {
+    width: 300,
+    height: 300,
+    marginBottom: 20,
+  },
+  
 });
