@@ -1,12 +1,15 @@
-import React from "react";
+import React, {useState} from "react";
 import { View, Text, Button, StyleSheet,Image, FlatList, TouchableOpacity, ScrollView } from "react-native";
-import { Ionicons} from 'react-native-vector-icons';
+import  Ionicons from 'react-native-vector-icons/Ionicons';
+import { SafeAreaView } from "react-native";
+
 
 export default function FilterScreen({navigation}) {
     const[sortOption, setSortOption] = useState('Featured Items');
     const[priceExpanded, setPriceExpanded] = useState(false);
     const[nutritionExpanded, setNutritionExpanded] = useState(false);
     const[dietaryExpanded, setDietaryExpanded] = useState(false);
+    const[state, setState] = useState({});
 
     return (
         <SafeAreaView style={styles.container}>

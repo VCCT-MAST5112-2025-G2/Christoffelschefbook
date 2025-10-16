@@ -1,13 +1,11 @@
 import React from "react";
 import { View, Text, Button, StyleSheet } from "react-native";
 
+
 export default function WelcomeScreen({ navigation }) {
     return (
         <View style={styles.container}>
-          <image
-          style={styles.image}
-          source={require('../assets/welcome.png')}
-          />
+    
             <Text style={styles.title}>Welcome to Christoffel's Chef Book!</Text>
             <Button
                 title="Get Started"
@@ -25,10 +23,5 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
 
-  image: {
-    width: 300,
-    height: 300,
-    marginBottom: 20,
-  },
   
 });

@@ -54,7 +54,7 @@ const Mainmenu = [
 ]
     
 
-export default function HomepageSreen({navigation}) {
+export default function HomepageScreen({navigation}) {
     const renderItem = ({ item }) => (
         <View style={styles.card}>
             <Image source={item.image} style={styles.image} />
