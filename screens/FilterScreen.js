@@ -1,6 +1,6 @@
 import React from "react";
 import { View, Text, Button, StyleSheet,Image, FlatList, TouchableOpacity, ScrollView } from "react-native";
-import { Ionicons} from @react-native-vector-icons;
+import { Ionicons} from 'react-native-vector-icons';
 
 export default function FilterScreen({navigation}) {
     const[sortOption, setSortOption] = useState('Featured Items');

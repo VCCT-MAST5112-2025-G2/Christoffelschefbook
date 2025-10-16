@@ -1,12 +1,13 @@
+import React from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 import {NavigationContainer} from "@react-navigation/native";
 import {createNativeStackNavigator} from "@react-navigation/native-stack";
 
-import HomeScreen from "./screens/HomepageScreen";
-import RecipeScreen from "./screens/WelcomeScreen";
-import FilterScreen from "./screens/FilterScreen";
-import ManagecontentScreen from "./screens/ManagecontentScreen";
+import HomeScreen from "./HomepageScreen";
+import RecipeScreen from "./WelcomeScreen";
+import FilterScreen from "./FilterScreen";
+import ManagecontentScreen from "./ManagecontentScreen";
 
 const Stack = createNativeStackNavigator();
 

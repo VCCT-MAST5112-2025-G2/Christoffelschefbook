@@ -1,6 +1,21 @@
 {
-  "extends": "expo/tsconfig.base",
   "compilerOptions": {
-    "strict": true
-  }
+    "outDir": "./build",
+    "module": "commonjs",
+    "strict": true,
+    "jsx": "react",
+    "allowJs": true,
+    "moduleResolution": "node",
+    "target": "esnext",
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "types": [
+      "react",
+      "react-native"
+    ]
+  },
+  "exclude": [
+    "node_modules",
+    "build"
+  ]
 }
