@@ -17,6 +17,8 @@ export default function App() {
       <Stack.Navigator initialRouteName="Home">
         <Stack.Screen name="Home" component={HomeScreen} />
         <Stack.Screen name="Recipe" component={RecipeScreen} />
+        <Stack.Screen name="Filter" component={FilterScreen} />
+        <Stack.Screen name="Managecontent" component={ManagecontentScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );

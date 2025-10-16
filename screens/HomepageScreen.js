@@ -5,51 +5,51 @@ const Mainmenu = [
     { id:'1',
         name:'Beef Welligton',
         Description:'A filet steak coated with mushroom duxelles and Parm ham, wrapped in puff pastry, and baked to perfection.',
-        image: require('../assets/beefwellington.jpg'),
-        price:''
+       
+        price:'R450.00'
     },
 
     { id:'2',
         name:'Lobster with Red Pepper Sauce',
         Description:'A luxurious combination of sweet lobster paired with cardamom infused jus and a vibrant red pepper sauce.',
-        image: require('../assets/lobster.jpg'),
-        price:''
+      
+        price:'R350.00'
     },
 
     { id:'3',
         name:'Elegant lobster bisque with foie gras',
         Description:'A lobster, cream and aromatic vegetables along with a decadent addition of foie gras.',
-        image: require('../assets/lobsterbisque.jpg'),
-        price:''
+       
+        price:'R300.00'
     },
 
     { id:'4',
         name:'Kaiseki Wagyu Sukiyaki',
         Description:'Thinly sliced Wagyu beef cooked in a savory-sweet broth with vegetables, tofu, and noodles, served in a traditional Japanese style.',
-        image: require('../assets/kaiseki.jpg'),
-        price:''
+        
+        price:'R250.00'
     },
 
     { id:'5',
         name:'Wagyu Steak',
         Description:'A premium cut of Wagyu beef, served with roasted vegetables.',
         Others:'charred asparagus, light salad with citrus vinaigrette, roasted potatoes ',
-        image: require('../assets/wagyusteak.jpg'),
-        price:''
+       
+        price:'R350.00'
     },
 
     { id:'6',
         name:'Herb-Crusted Rack of Lamb',
         Description:'A succulent rack of lamb coated with a fragrant herb crust, served with a red wine reduction and seasonal vegetables.',
-        image: require('../assets/lamb.jpg'),
-        price:''
+     
+        price:'R300.00'
     },
 
     { id:'7',
         name:'Classic Fish and Chips',
         Description:'Crispy battered fish served with golden fries, tartar sauce, and a wedge of lemon.',
-        image: require('../assets/fishandchips.jpg'),
-        price:''
+    
+        price:'R230.00'
     },
 ]
     
