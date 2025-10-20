@@ -1,5 +1,6 @@
-import React from "react";
-import { View, Text, Button, StyleSheet,Image, FlatList, TouchableOpacity } from "react-native";
+import React, {useState} from "react";
+import{useRouter} from 'expo-router';
+import { View, Text,StyleSheet,Image, FlatList, TouchableOpacity, } from "react-native";
 
 const Mainmenu = [
     { id:'1',
@@ -52,9 +53,11 @@ const Mainmenu = [
         price:'R230.00'
     },
 ]
-    
 
 export default function HomepageScreen({navigation}) {
+
+const router = useRouter();
+
     const renderItem = ({ item }) => (
         <View style={styles.card}>
             <View style={styles.info}>
@@ -62,10 +65,6 @@ export default function HomepageScreen({navigation}) {
                 <Text style={styles.description}>{item.Description}</Text>
                 <Text style={styles.others}>{item.Others}</Text>
                 <Text style={styles.price}>{item.price}</Text>
-                <TouchableOpacity
-                 style={styles.button} onPress={() => navigation.navigate('RecipeDetails', { recipe: item })}>
-                    <Text style={styles.buttonText}>View Recipe</Text>
-                </TouchableOpacity>
             </View>
         </View>
     );
@@ -73,10 +72,11 @@ export default function HomepageScreen({navigation}) {
         <View style={styles.container}>
             <Text style={styles.title}>Welcome to Christoffel's Chef Book!</Text>
             <Text style={styles.subtitle}>Your personal recipe manager.</Text>
-            <Button
-                title="Get Started"
-                onPress={() => navigation.navigate('Welcome')}
-            />
+
+           <TouchableOpacity style = {styles.navButton} onPress = {()=>router.push('/add')}>
+           <Text style={styles.navText}>Add</Text>
+           </TouchableOpacity>
+
               <FlatList
             data={Mainmenu}
             renderItem={renderItem}
@@ -102,6 +102,10 @@ const styles = StyleSheet.create({
     width: '90%',
     alignSelf: 'center',
   },
+
+listContent:{
+  paddingBottom:120
+},
 
   button: {
     backgroundColor: '#007BFF',

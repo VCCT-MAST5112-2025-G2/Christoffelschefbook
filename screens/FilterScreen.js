@@ -1,4 +1,5 @@
 import React, {useState} from "react";
+import {useRouter} from 'expo-router'
 import { View, Text, Button, StyleSheet, FlatList, TouchableOpacity, ScrollView } from "react-native";
 import  Ionicons from 'react-native-vector-icons/Ionicons';
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -10,6 +11,7 @@ export default function FilterScreen({navigation}) {
     const[nutritionExpanded, setNutritionExpanded] = useState(false);
     const[dietaryExpanded, setDietaryExpanded] = useState(false);
     const[state, setState] = useState({});
+    const router = useRouter();
 
     return (
         <SafeAreaView style={styles.container}>
@@ -61,9 +63,9 @@ export default function FilterScreen({navigation}) {
                     </View>
                 )}
 
-                <Button style={styles.applyButton} onPress={() => navigation.goBack()}>
-                    <Text style={styles.applyButtonText}>Apply Filters</Text>
-                </Button>
+              <TouchableOpacity style={styles.navButton} onPress={()=> router.push('/apply filters')}>
+              <Text style={styles.navText}> Apply filters</Text>
+              </TouchableOpacity>
             </ScrollView>
         </SafeAreaView>
     );
