@@ -57,13 +57,13 @@ const Mainmenu = [
 export default function HomepageScreen({navigation}) {
     const renderItem = ({ item }) => (
         <View style={styles.card}>
-            <Image source={item.image} style={styles.image} />
             <View style={styles.info}>
                 <Text style={styles.name}>{item.name}</Text>
                 <Text style={styles.description}>{item.Description}</Text>
                 <Text style={styles.others}>{item.Others}</Text>
                 <Text style={styles.price}>{item.price}</Text>
-                <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('RecipeDetails', { recipe: item })}>
+                <TouchableOpacity
+                 style={styles.button} onPress={() => navigation.navigate('RecipeDetails', { recipe: item })}>
                     <Text style={styles.buttonText}>View Recipe</Text>
                 </TouchableOpacity>
             </View>
@@ -93,6 +93,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+
   card: {
     backgroundColor: '#f8f8f8',
     borderRadius: 10,
@@ -101,4 +102,44 @@ const styles = StyleSheet.create({
     width: '90%',
     alignSelf: 'center',
   },
+
+  button: {
+    backgroundColor: '#007BFF',
+    padding: 10,
+    borderRadius: 5,
+    alignItems: 'center',
+    marginTop: 10,
+    marginBottom: 10,
+    width: '50%',
+  },
+
+    buttonText: {
+    color: '#fff',
+    fontWeight: 'bold',
+  },
+
+  description:{
+    fontSize: 14,
+    color: '#666',
+    marginTop: 5,
+    },
+
+  Price:{
+    fontSize: 16,
+    fontWeight: 'bold',
+    marginTop: 5,
+  },
+
+    title: {   
+    fontSize: 24,
+    fontWeight: 'bold',
+    marginBottom: 10,
+    },
+    
+    subtitle: {
+    fontSize: 16,
+    color: '#666',
+    marginBottom: 20,
+    },
+
 });

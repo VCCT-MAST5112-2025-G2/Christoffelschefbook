@@ -1,7 +1,7 @@
 import React, {useState} from "react";
-import { View, Text, Button, StyleSheet,Image, FlatList, TouchableOpacity, ScrollView } from "react-native";
+import { View, Text, Button, StyleSheet, FlatList, TouchableOpacity, ScrollView } from "react-native";
 import  Ionicons from 'react-native-vector-icons/Ionicons';
-import { SafeAreaView } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 
 export default function FilterScreen({navigation}) {
@@ -61,9 +61,9 @@ export default function FilterScreen({navigation}) {
                     </View>
                 )}
 
-                <TouchableOpacity style={styles.applyButton} onPress={() => navigation.goBack()}>
+                <Button style={styles.applyButton} onPress={() => navigation.goBack()}>
                     <Text style={styles.applyButtonText}>Apply Filters</Text>
-                </TouchableOpacity>
+                </Button>
             </ScrollView>
         </SafeAreaView>
     );
@@ -76,4 +76,5 @@ const styles = StyleSheet.create({
         paddingTop: 40,
         paddingHorizontal: 20,
     },
+
 });
