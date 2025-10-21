@@ -58,6 +58,8 @@ export default function HomepageScreen({navigation}) {
 const [mainMenu, setMainmenu] = useState(MainmenuData);
 const [showForm, setShowForm] = useState(false);
 const router = useRouter();
+const [expandedCardId, setExpandedCardId]=useState(null);
+
 
 const [newMeal, setNewMeal] = useState({
   name:"",
@@ -80,24 +82,38 @@ const handleAddMeal = () =>{
     image:newMeal.image?{uri:newMeal.image} :null,
   };
   setMainmenu([...mainMenu,newItem]);
+  alert("Meal added! Total meals:" + (mainMenu.length + 1));
   setNewMeal({name:"",Description:"",price:"",image:"",});
   setShowForm(false);
 };
 
-    const renderItem = ({ item }) => (
-        <View style={styles.card}>
-        <Image source={item.image} style={styles.image} resizeMode="cover"/>
+    const renderItem = ({ item }) => {
+    const isExpanded = expandedCardId === item.id;
+
+    return(
+    <TouchableOpacity
+    onPress={() => setExpandedCardId(isExpanded ? null : item.id)}>
+        <View style={[styles.card, isExpanded && styles.expandedCard]}>
+        <Image source={item.image} style={[styles.image,isExpanded && styles.expandedImage]} resizeMode="cover"/>
             <View style={styles.info}>
                 <Text style={styles.name}>{item.name}</Text>
                 <Text style={styles.description}>{item.Description}</Text>
+                { isExpanded && (
+                  <>
                 <Text style={styles.others}>{item.Others}</Text>
                 <Text style={styles.price}>{item.price}</Text>
+                </>
+                )}
             </View>
         </View>
+        </TouchableOpacity>
     );
+    };
+
     return (
       <ScrollView contentContainerStyle={styles.container}>
             <Text style={styles.title}>Christoffel's top dishes</Text>
+            <Text style={styles.mealCount}>Total meals on menu:{mainMenu.length}</Text>
               <FlatList
             data={mainMenu}
             renderItem={renderItem}
@@ -126,17 +142,17 @@ const handleAddMeal = () =>{
            <TextInput style={styles.input}
            placeholder="Description"
            value={newMeal.description}
-           onchangeText={(text)=>setNewMeal({...newMeal, description:text})}/>
+           onChangeText={(text)=>setNewMeal({...newMeal, description:text})}/>
 
             <TextInput style={styles.input}
-           placeholder="Price"
+           placeholder="Price (eg.R230)"
            value={newMeal.price}
-           onchangeText={(text)=>setNewMeal({...newMeal, price:text})}/>
+           onChangeText={(text)=>setNewMeal({...newMeal, price:text})}/>
 
             <TextInput style={styles.input}
            placeholder="Image"
            value={newMeal.image}
-           onchangeText={(text)=>setNewMeal({...newMeal, image :text})}/>
+           onChangeText={(text)=>setNewMeal({...newMeal, image :text})}/>
            
            <View style={styles.formButtons}>
            <TouchableOpacity style={styles.saveButton} onPress={handleAddMeal}>
@@ -157,10 +173,9 @@ const handleAddMeal = () =>{
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    flexGrow: 1,
     backgroundColor: '#007BFF',
     alignItems: 'center',
-    justifyContent: 'space-between',
     padding:20,
   },
 
@@ -216,7 +231,7 @@ image:{
     marginTop: 5,
     },
 
-  Price:{
+  price:{
     fontSize: 16,
     fontWeight: 'bold',
     marginTop: 5,
