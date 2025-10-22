@@ -5,7 +5,7 @@ import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import HomeScreen from "./HomepageScreen";
 
 export default function WelcomeScreen({ navigation }) {
-  const router = useRouter();
+  const router = useRouter(); // Router for navigation between screens
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Welcome to Christoffel's Chef Book!</Text>
@@ -15,7 +15,7 @@ export default function WelcomeScreen({ navigation }) {
         <Text style={styles.navText}> View Menu </Text>
       </TouchableOpacity>
     </View>
-  );
+  ); // Welcome screen with navigation to the homepage screen
 }
 
 const styles = StyleSheet.create({
@@ -46,4 +46,4 @@ marginBottom:100,
   },
 
 
-});
+}); // Styles for the welcome screen components

@@ -9,5 +9,5 @@ export default function ManagecontentScreen({ navigation }) {
                                 <Text style={styles.dropdownText}>{sortOption}</Text>
                             </TouchableOpacity>
         </View>
-    );
+    ); // Manage content screen layout
 }

@@ -1,17 +1,17 @@
 import React, {useState} from "react";
 import {useRouter} from 'expo-router'
 import { View, Text, Button, StyleSheet, FlatList, TouchableOpacity, ScrollView } from "react-native";
-import  Ionicons from 'react-native-vector-icons/Ionicons';
-import { SafeAreaView } from "react-native-safe-area-context";
+import  Ionicons from 'react-native-vector-icons/Ionicons'; // Icon library
+import { SafeAreaView } from "react-native-safe-area-context"; // Safe area for iOS devices
 
 
 export default function FilterScreen({navigation}) {
-    const[sortOption, setSortOption] = useState('Featured Items');
+    const[sortOption, setSortOption] = useState('Featured Items'); // Component state for managing the selected sort option
     const[priceExpanded, setPriceExpanded] = useState(false);
     const[nutritionExpanded, setNutritionExpanded] = useState(false);
     const[dietaryExpanded, setDietaryExpanded] = useState(false);
     const[state, setState] = useState({});
-    const router = useRouter();
+    const router = useRouter(); // Router for navigation between screens
 
     return (
         <SafeAreaView style={styles.container}>
@@ -68,7 +68,7 @@ export default function FilterScreen({navigation}) {
               </TouchableOpacity>
             </ScrollView>
         </SafeAreaView>
-    );
+    ); // Filter screen layout with sort and filter options
 }
 
 const styles = StyleSheet.create({
@@ -79,4 +79,4 @@ const styles = StyleSheet.create({
         paddingHorizontal: 20,
     },
 
-});
+}); // Styles for the filter screen components
