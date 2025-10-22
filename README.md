@@ -15,13 +15,19 @@ Disclaimer - the app is a android and ios supported operating system and will ne
 4. Now you should be set to start using the app.
 5. If the app fails to install the space requirement may be full , so make sure there is enough storage for the app to run well.
 
-# Features: 
+# Features and Screens: 
+
+Welcome Screen:
 
 View Menu button: this button will take the chef to view the meals they have added to their app.
+
+Home Screen:
 
 Add button: this button will allow the chef to be able to add different meals on to the menus. 
 
 Error handling: if the chef does not add name or price of the meal the app will show the chef an alert to include the name and price. 
+
+Category buttons: This buttons allow the chef to select whether the meal they adding on the menu is a starter,main or a dessert. 
 
 Save button: after the chef has included the dishes name,description, price and image they will be able to click the save button allowing the app to add the meal to the menu.
 
@@ -29,12 +35,17 @@ Cancel button: if the chef decides not to save the inputs for the dish they will
 
 Back button: when the chef is done adding the dish they will have the ability to go back to the welcome screen.
 
-# Actions: 
+# Actions on screens: 
 
-When the user clicks the dish card the dish card will show more detail such as the price.
+1. The app wil immediately run showing the view menu button.
+2. The view button takes the user to the next page ( home/menu page).
+3. By clciking on the different meal cards the user will be able to see more details about the meal.
+4. Scrolling down the page user is allowed to add a meal to menu.
+5. Clicking the button will show the form the user has to fill in to be able to add the meal into the menu.
+6. Before saving the meal into the menu the user will have to select whether the meal is a starter, main or dessert,
+7. After saving the meal an alert will pop up telling the user how many meals are now in the menu.
 
-
-
+   
 # Documentation
 ![WhatsApp Image 2025-10-21 at 21 44 17](https://github.com/user-attachments/assets/38e4c95d-1245-4730-a82b-c0788e88baa2)
 ![WhatsApp Image 2025-10-21 at 21 44 17 (1)](https://github.com/user-attachments/assets/740255d8-8cd4-4cfe-87ba-40fdbd778c5e)
