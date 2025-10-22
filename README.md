@@ -2,6 +2,12 @@
 # Awongiwe Mayisela 
 # St10478718
 
+# Youtube Link :
+https://youtu.be/Mk6rHnNFTl0
+
+# Github link: 
+https://github.com/VCCT-MAST5112-2025-G2/Christoffelschefbook.git
+
 # Purpose 
 The purpose of the app is a menu app that will be used by chef Christoffel to showcase all types of dishes he has created. The dishe will range from starters to deserts.The app will allow the chef to add and remove meals of the menu whenever he pleases. 
 
@@ -64,11 +70,9 @@ Back button: when the chef is done adding the dish they will have the ability to
 
 
 
-# Github link: 
-https://github.com/VCCT-MAST5112-2025-G2/Christoffelschefbook.git
 
-# Youtube Link :
-https://youtu.be/Mk6rHnNFTl0
+
+
 
 
 
