@@ -7,7 +7,7 @@ The purpose of the app is a menu app that will be used by chef Christoffel to sh
 
 # Installation instructions:
 
-Disclaimer - the app is a android and ios supported operating system and will need an estimate storage of 250MB
+Disclaimer - the app was coded on visual studio code and was test on Expo Snack dev. Therefore if user tries to run it on web run: npm install, npx expo install
 
 1. Download the app by searching the app on google play stores or apple store and clicking install. 
 2. The app will then install directly to your device from google play stores or apple store. 
@@ -61,8 +61,6 @@ Back button: when the chef is done adding the dish they will have the ability to
 <img width="1252" height="854" alt="image" src="https://github.com/user-attachments/assets/75b91aca-6779-45c6-a54a-97e722ec0a9f" />
 <img width="1009" height="803" alt="image" src="https://github.com/user-attachments/assets/01808bd4-a320-49ec-bdb3-af66f2e4ff66" />
 <img width="1069" height="847" alt="image" src="https://github.com/user-attachments/assets/dd8fe9db-951a-43bc-92ae-56513cdc4c37" />
-
-
 
 
 
