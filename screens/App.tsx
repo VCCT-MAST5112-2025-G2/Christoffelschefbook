@@ -9,6 +9,7 @@ import RecipeScreen from "./WelcomeScreen";
 import FilterScreen from "./FilterScreen";
 import ManagecontentScreen from "./ManagecontentScreen";
 import WelcomeScreen from './WelcomeScreen';
+import MenuScreen from './MenuScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -20,6 +21,7 @@ export default function App() {
         <Stack.Screen name="Welcome" component={WelcomeScreen} />
         <Stack.Screen name="Filter" component={FilterScreen} />
         <Stack.Screen name="Managecontent" component={ManagecontentScreen} />
+        <Stack.Screen name="Menu" component={MenuScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
