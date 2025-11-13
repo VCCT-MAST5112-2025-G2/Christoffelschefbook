@@ -1,6 +1,5 @@
 import React, {useState} from "react";
-import{useRouter} from 'expo-router';
-import { View, Text,StyleSheet,Image, FlatList, TouchableOpacity,ScrollView, TextInput} from "react-native";
+import { View, Text,StyleSheet,Image, FlatList, TouchableOpacity,ScrollView} from "react-native";
 
 const MainmenuData = [
     { id:'1',
@@ -59,47 +58,31 @@ const MainmenuData = [
     image:{uri:'https://snack-code-uploads.s3.us-west-1.amazonaws.com/~asset/a7af2a1adcab84a96138de9e47b5b237'},
         price:'R230.00'
     },
-] // Menu for the restaurant
-
+]
 
 export default function HomepageScreen({navigation}) {
-const [mainMenu, setMainmenu] = useState(MainmenuData);
-const [showForm, setShowForm] = useState(false); // Component state mananging the add meal form 
-const router = useRouter();
-const [expandedCardId, setExpandedCardId]=useState(null); // Component states for managing the accability of the meal cards
 
+  const filters = route.params?.filters || {};
+  const {price,category} = filters;
 
-const [newMeal, setNewMeal] = useState({
-  name:"",
-  Description:"",
-  price:"",
-  category:"",
-  image:"",
-}); // Component state for managing the new meal inputs
+  const priceToNumber = (priceString) =>
+  parseFloat(priceString)
+const [expandedCardId, setExpandedCardId]=useState(null);
 
-const handleAddMeal = () =>{
-  if (!newMeal.name || !newMeal.price){
-    alert("Please fill in name and price");
-    return;
-  
-  }
-  const newItem = {
-    id:(mainMenu.length + 1).toString(),
-    name: newMeal.name,
-    Description:newMeal.Description,
-    price:newMeal.price,
-    image:newMeal.image?{uri:newMeal.image} :null,
-    category:newMeal.category,
-  }; // New meal object created from the form inputs
+        const calculateAveragePrice = () => {
+      const totalPrice = MainmenuData.reduce((sum, item) => {
+        const priceValue= parseFloat(item.price.replace('R','').replace(',',''));
+        return sum + priceValue;
+      }, 0); 
 
-  setMainmenu([...mainMenu,newItem]);
-  alert("Meal added! Total meals:" + (mainMenu.length + 1));
-  setNewMeal({name:"",Description:"",price:"",image:"",});
-  setShowForm(false);
-}; // Function to handle adding a new meal to the main menu
+      return totalPrice/MainmenuData.length;
+    } ;
+    
+    const averagePrice = calculateAveragePrice();
 
     const renderItem = ({ item }) => {
     const isExpanded = expandedCardId === item.id;
+
 
     return(
     <TouchableOpacity
@@ -115,89 +98,44 @@ const handleAddMeal = () =>{
                 <Text style={styles.price}>{item.price}</Text>
                 <Text style={styles.category}>category:{item.category}</Text>
                 </>
-                )} 
+                )}
             </View>
         </View>
         </TouchableOpacity>
     );
-    }; // On press allowing the ability to expand and collapse meal cards to view more details
+    };
+
+
 
     return (
       <ScrollView contentContainerStyle={styles.container}>
             <Text style={styles.title}>Christoffel's top dishes</Text>
-            <Text style={styles.mealCount}>Total meals on menu:{mainMenu.length}</Text>
+            <Text style={styles.mealCount}>Total meals on menu:{MainmenuData.length}</Text>
+            <Text style={styles.averagePrice}> Average Price:R{averagePrice.toFixed(2)}</Text>
+
               <FlatList
-            data={mainMenu}
+            data={MainmenuData}
             renderItem={renderItem}
             keyExtractor={item => item.id}
             contentContainerStyle={styles.listContent}
         />  
-           <TouchableOpacity style = {styles.Button} onPress = {()=>setShowForm(true)}>
-           <Text style={styles.navText}>Add</Text>
-           </TouchableOpacity>
+
+    <TouchableOpacity
+        style={styles.Button}
+        onPress={() => navigation.navigate('Menu')}>
+        <Text style={styles.navText}> Next</Text>
+      </TouchableOpacity>
 
             <TouchableOpacity
         style={styles.Button}
         onPress={() => navigation.navigate('Welcome')}>
         <Text style={styles.navText}> Back </Text>
-      </TouchableOpacity>
-
-{showForm && (
-           <View style={styles.formContainer}>
+        </TouchableOpacity>
         
-           <TextInput 
-           style={styles.input}
-           placeholder="Meal name"
-           value={newMeal.name}
-           onChangeText={(text)=> setNewMeal({...newMeal,name:text})}/>
-
-           <TextInput style={styles.input}
-           placeholder="Description"
-           value={newMeal.Description}
-           onChangeText={(text)=>setNewMeal({...newMeal, Description:text})}/>
-
-            <TextInput style={styles.input}
-           placeholder="Price (eg.R230)"
-           value={newMeal.price}
-           onChangeText={(text)=>setNewMeal({...newMeal, price:text})}/>
-
-            <TextInput style={styles.input}
-           placeholder="Image"
-           value={newMeal.image}
-           onChangeText={(text)=>setNewMeal({...newMeal, image :text})}/>
-
-           <Text styles={{marginTop:10, fontWeight:'bold'}}>Select Meal Category:</Text>
-           <View style={{flexDirection:'row', justifyContent:'space-around', marginVertical:10}}>
-           {['Starter', 'Main', 'Dessert'].map(type=>(
-             <TouchableOpacity key={type}
-             style={{
-               backgroundColor: newMeal.category === type? '#FfDDc1' : '#fff',
-               padding: 10,
-               borderRadius:5,
-               borderColor:'#ccc',
-               borderWidth:1
-             }}
-             onPress={() => setNewMeal({ ...newMeal,category:type})}>
-             <Text>{type}</Text>
-             </TouchableOpacity>
-           ))}
-           </View>
-
-           <View style={styles.formButtons}>
-           <TouchableOpacity style={styles.saveButton} onPress={handleAddMeal}>
-           <Text style = {styles.navText}>Save</Text>
-           </TouchableOpacity>
-
-           <TouchableOpacity style= {styles.cancelButton} onPress={()=> setShowForm(false)}>
-           <Text style={styles.navText}>Cancel</Text>
-           </TouchableOpacity>
-    
-   </View>
-        </View>
-)}
         </ScrollView>
-    )
-}; // ScrollView containing the main menu list, add meal button, and back button to welcome screen
+
+    );
+    }
 
 
 const styles = StyleSheet.create({
@@ -230,23 +168,6 @@ Button: {
     width: '50%',
   },
 
-  cancelButton:{
- backgroundColor: '#fff',
-    padding: 10,
-    borderRadius: 5,
-    alignItems: 'center',
-    marginBottom: 20,
-    width: '50%',
-  },
-
-  saveButton:{
- backgroundColor: '#fff',
-    padding: 10,
-    borderRadius: 5,
-    alignItems: 'center',
-    marginBottom: 20,
-    width: '50%',
-  },
 
 image:{
   width:100,
@@ -278,4 +199,4 @@ image:{
     marginBottom: 20,
     },
 
-}); // Styles for the homepage screen components
+});
