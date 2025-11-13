@@ -58,6 +58,21 @@ const MainmenuData = [
     image:{uri:'https://snack-code-uploads.s3.us-west-1.amazonaws.com/~asset/a7af2a1adcab84a96138de9e47b5b237'},
         price:'R230.00'
     },
+
+    {id:'8',
+    name:' Chocolate Lava Cake',
+    Description:'A rich, warm chocolate cake with a gooey molten center, served with vanilla ice-cream and a drizzle of chocolate sauce.',
+    category:'Dessert',
+    image:{uri:'https://snack-code-uploads.s3.us-west-1.amazonaws.com/~asset/7b690a4a284f74949cbc5647faf3a867'},
+    price:'R75'
+    },
+
+    {id:'9',
+    name:'Strawberry Cheesecake',
+    Description:'A creamy baked cheesecake topped with fresh strawberries and a sweet berry glaze on a buttery bisuit crust. ',
+    category:'Dessert',
+    image:{uri:'https://snack-code-uploads.s3.us-west-1.amazonaws.com/~asset/e054afe08bc3c468889125c9a8bb2722'},
+    price:'R65'},
 ]
 
 export default function HomepageScreen({navigation,route }) {
@@ -72,7 +87,7 @@ export default function HomepageScreen({navigation,route }) {
   return  parseFloat(numericString)
   };
 
-const [ filteredData, setFilteredData] = useState(MainmenuData); // this component will show the meals when the filters are being applied
+const [ filteredData, setFilteredData] = useState(MainmenuData);
 
 
 useEffect (() => {
@@ -90,7 +105,6 @@ useEffect (() => {
   setFilteredData([...data]);
 }, [category,price]);
   
-// this will calculate the average price of the meals on the homepage screen
 const [expandedCardId, setExpandedCardId]=useState(null);
 
         const calculateAveragePrice = () => {
