@@ -1,25 +1,38 @@
-import React, {useState} from "react";
-import {useRouter} from 'expo-router'
-import { View, Text, Button, StyleSheet, FlatList, TouchableOpacity, ScrollView } from "react-native";
-import  Ionicons from 'react-native-vector-icons/Ionicons'; // Icon library
-import { SafeAreaView } from "react-native-safe-area-context"; // Safe area for iOS devices
+import React, {useState} from 'react'
+import {useRouter} from 'expo-router';
+import { View, Text, Button, StyleSheet, TouchableOpacity, ScrollView } from "react-native";
+import  {Ionicons} from '@expo/vector-icons';
+import { SafeAreaView } from "react-native-safe-area-context";
 
 
 export default function FilterScreen({navigation}) {
-    const[sortOption, setSortOption] = useState('Featured Items'); // Component state for managing the selected sort option
+    const[sortOption, setSortOption] = useState('Featured Items');
     const[priceExpanded, setPriceExpanded] = useState(false);
-    const[nutritionExpanded, setNutritionExpanded] = useState(false);
-    const[dietaryExpanded, setDietaryExpanded] = useState(false);
+    const[categoryExpanded, setCategoryExpanded] = useState([]);
     const[state, setState] = useState({});
-    const router = useRouter(); // Router for navigation between screens
+
+    const[selectedPrice,setSelectedPrice] = useState(null);
+    const[selectedCategory, setSelectedCategory] = useState([]);
+
+
+    const router = useRouter();
+
+ 
+
+    const hanldeApplyFilter = () =>{
+      const filters = {
+        price:selectedPrice,
+       category:selectedCategory,
+      };
+      navigation.navigate('Homepage',{filters});
+    };
 
     return (
         <SafeAreaView style={styles.container}>
             <View style={styles.header}>
-                <Text style={styles.headerTitle}>Filter & Sort</Text>
                 <View style={styles.headerIcons}>
-                    <Ionicons name="menu-outline" size={24} color="black" style={styles.icon} />
-                    <Ionicons name="search-outline" size={24} color="black" style={styles.icon} />
+                    <Ionicons name="menu-outline" size={24} color="white" style={styles.icon} />
+                    <Ionicons name="search-outline" size={24} color="white" style={styles.icon} />
                 </View>
             </View>
 
@@ -27,56 +40,122 @@ export default function FilterScreen({navigation}) {
                 <Text style={styles.sectionTitle}>Sort By</Text>
                 <TouchableOpacity style={styles.dropdown}>
                     <Text style={styles.dropdownText}>{sortOption}</Text>
-                    <Ionicons name="chevron-down-outline" size={20} color="black" />
+                    <Ionicons name="chevron-down-outline" size={20} color="white" />
                 </TouchableOpacity>
-
-                <Text style={styles.sectionTitle}>Filter By</Text>
-                <View style={styles.divider} />
-
+                
                 <TouchableOpacity style={styles.accordionHeader} onPress={() => setPriceExpanded(!priceExpanded)}>
                     <Text style={styles.accordionTitle}>Price</Text>
                     <Text style={styles.accordionIcon}>{priceExpanded ? '-' : '+'}</Text>
                 </TouchableOpacity>
+
                 {priceExpanded && (
                     <View style={styles.accordionContent}>
-                        <Text>Price will go here</Text>
-                    </View>
-                )}
-
-                <TouchableOpacity style={styles.accordionHeader} onPress={() => setNutritionExpanded(!nutritionExpanded)}>
-                    <Text style={styles.accordionTitle}>Nutrition</Text>
-                    <Text style={styles.accordionIcon}>{nutritionExpanded ? '-' : '+'}</Text>
-                </TouchableOpacity>
-                {nutritionExpanded && (
-                    <View style={styles.accordionContent}>
-                        <Text>Nutrition will go here</Text>
-                    </View>
-                )}
-
-                <TouchableOpacity style={styles.accordionHeader} onPress={() => setDietaryExpanded(!dietaryExpanded)}>
-                    <Text style={styles.accordionTitle}>Dietary</Text>
-                    <Text style={styles.accordionIcon}>{dietaryExpanded ? '-' : '+'}</Text> 
-                </TouchableOpacity>
-                {dietaryExpanded && (
-                    <View style={styles.accordionContent}>
-                        <Text>Dietary will go here</Text>
-                    </View>
-                )}
-
-              <TouchableOpacity style={styles.navButton} onPress={()=> router.push('/apply filters')}>
-              <Text style={styles.navText}> Apply filters</Text>
+                    {['Cheap to Expensive', 'Expensive to Cheap'].map((option) => (
+                      <TouchableOpacity 
+                      key={option}
+                      style={[
+                        styles.filterOption, selectedPrice === option && styles.selectedOption,]} 
+                        onPress={() => setSelectedPrice(option)}>
+                        <Text style={[styles.optionText,selectedPrice === option && styles.selectedText,]}>
+                        {option}
+              </Text>
               </TouchableOpacity>
+                    ))}
+                    </View>
+                )}
+
+                <TouchableOpacity style={styles.accordionHeader} onPress={() => setCategoryExpanded(!categoryExpanded)}>
+                <Text style={styles.accordionTitle}>Category</Text>
+                <Text style={styles.accordionIcon}>{categoryExpanded ? '-' : '+'}</Text>
+                </TouchableOpacity>
+
+                {categoryExpanded && (
+                  <View style={styles.accordionContent}>
+                  {['Starters', 'Main', 'Desert'].map((option) =>( 
+                    <TouchableOpacity
+                    key={option}
+                    style={[ styles.filterOption,selectedCategory === option && styles.selectedOption,]}
+                    onPress={() => setSelectedCategory(option)}> 
+                    <Text style={[styles.optionText,selectedCategory === option && styles.selectedText,]}>
+                    {option}
+                    </Text>
+                    </TouchableOpacity>
+                  ))}
+                  </View>
+                )}
+
+     
+      <TouchableOpacity
+        style={styles.Button}
+        onPress={hanldeApplyFilter}>
+        <Text style={styles.navText}> Apply filter </Text>
+      </TouchableOpacity>  // will allow the user to actually apply the 
+
             </ScrollView>
         </SafeAreaView>
-    ); // Filter screen layout with sort and filter options
+    );
 }
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#fff',   
+        backgroundColor: 'grey',   
         paddingTop: 40,
         paddingHorizontal: 20,
     },
+    
+    Button: {
+         backgroundColor: '#fff',
+    padding: 10,
+    borderRadius: 5,
+    alignItems: 'center',
+    marginBottom: 10,
+    width: '50%',
+    },
 
-}); // Styles for the filter screen components
+    navText: {
+      color:'black',
+      fontSize:16,
+    }, 
+
+  dropdown: {
+    flexDirection:'row',
+    justifyContent: 'space-between',
+    backgroundColor:'#fff',
+  }, 
+
+  dropdownText:{
+color:'black', 
+  },
+
+  sectionTitle:{
+    backgroundColor:'white',
+    fontSize: 18,
+    marginBottom:10,
+  }, 
+
+  accordionIcon:{
+color:'white', 
+fontSize:16,
+  }, 
+
+  accordionTitle:{
+    color:'white',
+    fontSize:16,
+  }, 
+
+  accordionContent:{
+paddingVertical:10,
+paddingHorizontal:5,
+  },
+
+headerIcons:{
+flexDirection: 'row', 
+},
+
+filterOption:{
+
+},
+
+
+});
