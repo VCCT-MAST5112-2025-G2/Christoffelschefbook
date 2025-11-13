@@ -81,6 +81,32 @@ The Menu screen has a add and remove button and the list of the menu without the
 
 <img width="333" height="496" alt="image" src="https://github.com/user-attachments/assets/716d2659-706f-4a2d-a8c3-9b32ee85c101" />
 
+This is how the add a meal form looks 
+
+<img width="332" height="504" alt="image" src="https://github.com/user-attachments/assets/b5de39c6-26b8-4d63-8607-c0ecf8579d36" />
+
+When the chef wants to remove any of the meals they will have to select using a checkbox
+
+<img width="333" height="503" alt="image" src="https://github.com/user-attachments/assets/6f5a3c4a-1bdd-421c-945c-7a911cf44276" />
+
+This is the filter page
+
+<img width="329" height="501" alt="image" src="https://github.com/user-attachments/assets/95ee1fc1-9f5f-4279-aaed-2c8a3ce6f9ff" />
+
+The different filter options before applying the filters
+
+<img width="336" height="507" alt="image" src="https://github.com/user-attachments/assets/d116f268-5abc-41e6-bc41-567934d55fe5" />
+
+The meals after the filter options have been applied
+
+<img width="337" height="435" alt="image" src="https://github.com/user-attachments/assets/fd48bfc7-373b-43d0-9e1c-215e3443b59f" />
+
+
+
+
+
+
+
 <img width="1028" height="552" alt="image" src="https://github.com/user-attachments/assets/e43f3471-7322-40d6-b136-f35fb68ac005" />
 
 
