@@ -65,10 +65,14 @@ export default function HomepageScreen({navigation,route }) {
   const filters = route.params?.filters || {};
   const {price,category} = filters;
 
-  const priceToNumber = (priceString) =>
-  parseFloat(priceString.replace('R','').replace(',',''));
+  const priceToNumber = (priceString) =>{
+    if(!priceString) return 0 ;
 
-const [ filteredData, setFilteredData] = useState(MainmenuData);
+  const numericString = (priceString.replace('R','').replace(',',''));
+  return  parseFloat(numericString)
+  };
+
+const [ filteredData, setFilteredData] = useState(MainmenuData); // this component will show the meals when the filters are being applied
 
 
 useEffect (() => {
@@ -79,13 +83,14 @@ useEffect (() => {
     data = data.filter(item => item.category === category); 
   }
   if(price === 'Cheap to Expensive'){
-    filteredData = filteredData.sort((a,b) => priceToNumber(a.price)-priceToNumber(b.price));
+    data  = data.sort((a,b) => priceToNumber(a.price)-priceToNumber(b.price));
   } else if (price === 'Expensive to Cheap') {
-    filteredData = filteredData.sort((a,b) => priceToNumber(b.price)- priceToNumber(a.price));
+    data = data.sort((a,b) => priceToNumber(b.price)- priceToNumber(a.price));
   } // when this is clicked the user will be able to see the meals that are filtered cheapest to most expensive or most expensive to cheapest
   setFilteredData([...data]);
 }, [category,price]);
   
+// this will calculate the average price of the meals on the homepage screen
 const [expandedCardId, setExpandedCardId]=useState(null);
 
         const calculateAveragePrice = () => {
