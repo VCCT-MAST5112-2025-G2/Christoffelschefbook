@@ -68,6 +68,22 @@ Back button: when the chef is done adding the dish they will have the ability to
 <img width="1009" height="803" alt="image" src="https://github.com/user-attachments/assets/01808bd4-a320-49ec-bdb3-af66f2e4ff66" />
 <img width="1069" height="847" alt="image" src="https://github.com/user-attachments/assets/dd8fe9db-951a-43bc-92ae-56513cdc4c37" />
 
+# Updated changelog: 
+Added the average price
+
+<img width="334" height="500" alt="image" src="https://github.com/user-attachments/assets/c255dd8e-351f-478a-9475-679fd5ed604a" />
+
+Removed the add button to its own screen
+
+<img width="333" height="506" alt="image" src="https://github.com/user-attachments/assets/c9ebe321-0b7c-4688-acf9-60c5ac44fd21" />
+
+The Menu screen has a add and remove button and the list of the menu without the pictures 
+
+<img width="333" height="496" alt="image" src="https://github.com/user-attachments/assets/716d2659-706f-4a2d-a8c3-9b32ee85c101" />
+
+<img width="1028" height="552" alt="image" src="https://github.com/user-attachments/assets/e43f3471-7322-40d6-b136-f35fb68ac005" />
+
+
 
 
 
