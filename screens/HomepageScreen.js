@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import { View, Text,StyleSheet,Image, FlatList, TouchableOpacity,ScrollView} from "react-native";
 
 const MainmenuData = [
@@ -60,13 +60,32 @@ const MainmenuData = [
     },
 ]
 
-export default function HomepageScreen({navigation}) {
+export default function HomepageScreen({navigation,route }) {
 
   const filters = route.params?.filters || {};
   const {price,category} = filters;
 
   const priceToNumber = (priceString) =>
-  parseFloat(priceString)
+  parseFloat(priceString.replace('R','').replace(',',''));
+
+const [ filteredData, setFilteredData] = useState(MainmenuData);
+
+
+useEffect (() => {
+
+ let data = [...MainmenuData];
+
+  if(category) {
+    data = data.filter(item => item.category === category); 
+  }
+  if(price === 'Cheap to Expensive'){
+    filteredData = filteredData.sort((a,b) => priceToNumber(a.price)-priceToNumber(b.price));
+  } else if (price === 'Expensive to Cheap') {
+    filteredData = filteredData.sort((a,b) => priceToNumber(b.price)- priceToNumber(a.price));
+  } // when this is clicked the user will be able to see the meals that are filtered cheapest to most expensive or most expensive to cheapest
+  setFilteredData([...data]);
+}, [category,price]);
+  
 const [expandedCardId, setExpandedCardId]=useState(null);
 
         const calculateAveragePrice = () => {
@@ -105,8 +124,6 @@ const [expandedCardId, setExpandedCardId]=useState(null);
     );
     };
 
-
-
     return (
       <ScrollView contentContainerStyle={styles.container}>
             <Text style={styles.title}>Christoffel's top dishes</Text>
@@ -114,7 +131,7 @@ const [expandedCardId, setExpandedCardId]=useState(null);
             <Text style={styles.averagePrice}> Average Price:R{averagePrice.toFixed(2)}</Text>
 
               <FlatList
-            data={MainmenuData}
+            data={filteredData}
             renderItem={renderItem}
             keyExtractor={item => item.id}
             contentContainerStyle={styles.listContent}
