@@ -29,9 +29,13 @@ View Menu button: this button will take the chef to view the meals they have add
 
 Home Screen:
 
-Add button: this button will allow the chef to be able to add different meals on to the menus. 
-
 Error handling: if the chef does not add name or price of the meal the app will show the chef an alert to include the name and price. 
+
+Back button: when the chef is done adding the dish they will have the ability to go back to the welcome screen.
+
+Menu Screen: 
+
+Add button: this button will allow the chef to be able to add different meals on to the menus. 
 
 Category buttons: This buttons allow the chef to select whether the meal they adding on the menu is a starter,main or a dessert. 
 
@@ -39,7 +43,12 @@ Save button: after the chef has included the dishes name,description, price and 
 
 Cancel button: if the chef decides not to save the inputs for the dish they will be able to cancel the process.
 
-Back button: when the chef is done adding the dish they will have the ability to go back to the welcome screen.
+Filter Screen: 
+
+The filter screen will have filter options that the user will be able to select. The filter options will be by price and category of the meal. 
+After the users sees their applied filter options they will be able to click the next button which will take them back to the menu screen or the back button which will allow them to go back to the welcome screen. 
+
+
 
 # Actions on screens: 
 
@@ -50,8 +59,11 @@ Back button: when the chef is done adding the dish they will have the ability to
 5. Clicking the button will show the form the user has to fill in to be able to add the meal into the menu.
 6. Before saving the meal into the menu the user will have to select whether the meal is a starter, main or dessert,
 7. After saving the meal an alert will pop up telling the user how many meals are now in the menu.
+8. Now that the meal is added to the menu the user also has the ability to remove any meal of their choice.
+9. After selecting the meal they want to get rid the meal will be excluded off the menu.
+10. The customer will able to use the filter page, which consists of different filiter options, such as cheapest to most expensive/ most expensive to cheapest or the user can filter using the meals category.
 
-   
+    
 # Documentation
 ![WhatsApp Image 2025-10-21 at 21 44 17](https://github.com/user-attachments/assets/38e4c95d-1245-4730-a82b-c0788e88baa2)
 ![WhatsApp Image 2025-10-21 at 21 44 17 (1)](https://github.com/user-attachments/assets/740255d8-8cd4-4cfe-87ba-40fdbd778c5e)
