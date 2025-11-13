@@ -68,6 +68,48 @@ Back button: when the chef is done adding the dish they will have the ability to
 <img width="1009" height="803" alt="image" src="https://github.com/user-attachments/assets/01808bd4-a320-49ec-bdb3-af66f2e4ff66" />
 <img width="1069" height="847" alt="image" src="https://github.com/user-attachments/assets/dd8fe9db-951a-43bc-92ae-56513cdc4c37" />
 
+# Updated changelog: 
+Added the average price
+
+<img width="334" height="500" alt="image" src="https://github.com/user-attachments/assets/c255dd8e-351f-478a-9475-679fd5ed604a" />
+
+Removed the add button to its own screen
+
+<img width="333" height="506" alt="image" src="https://github.com/user-attachments/assets/c9ebe321-0b7c-4688-acf9-60c5ac44fd21" />
+
+The Menu screen has a add and remove button and the list of the menu without the pictures 
+
+<img width="333" height="496" alt="image" src="https://github.com/user-attachments/assets/716d2659-706f-4a2d-a8c3-9b32ee85c101" />
+
+This is how the add a meal form looks 
+
+<img width="332" height="504" alt="image" src="https://github.com/user-attachments/assets/b5de39c6-26b8-4d63-8607-c0ecf8579d36" />
+
+When the chef wants to remove any of the meals they will have to select using a checkbox
+
+<img width="333" height="503" alt="image" src="https://github.com/user-attachments/assets/6f5a3c4a-1bdd-421c-945c-7a911cf44276" />
+
+This is the filter page
+
+<img width="329" height="501" alt="image" src="https://github.com/user-attachments/assets/95ee1fc1-9f5f-4279-aaed-2c8a3ce6f9ff" />
+
+The different filter options before applying the filters
+
+<img width="336" height="507" alt="image" src="https://github.com/user-attachments/assets/d116f268-5abc-41e6-bc41-567934d55fe5" />
+
+The meals after the filter options have been applied
+
+<img width="337" height="435" alt="image" src="https://github.com/user-attachments/assets/fd48bfc7-373b-43d0-9e1c-215e3443b59f" />
+
+
+
+
+
+
+
+<img width="1028" height="552" alt="image" src="https://github.com/user-attachments/assets/e43f3471-7322-40d6-b136-f35fb68ac005" />
+
+
 
 
 
