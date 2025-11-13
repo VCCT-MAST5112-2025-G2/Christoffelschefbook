@@ -1,5 +1,4 @@
 import React, {useState} from 'react'
-import {useRouter} from 'expo-router';
 import { View, Text, Button, StyleSheet, TouchableOpacity, ScrollView } from "react-native";
 import  {Ionicons} from '@expo/vector-icons';
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -8,24 +7,19 @@ import { SafeAreaView } from "react-native-safe-area-context";
 export default function FilterScreen({navigation}) {
     const[sortOption, setSortOption] = useState('Featured Items');
     const[priceExpanded, setPriceExpanded] = useState(false);
-    const[categoryExpanded, setCategoryExpanded] = useState([]);
+    const[categoryExpanded, setCategoryExpanded] = useState(false);
     const[state, setState] = useState({});
 
     const[selectedPrice,setSelectedPrice] = useState(null);
-    const[selectedCategory, setSelectedCategory] = useState([]);
-
-
-    const router = useRouter();
-
- 
+    const[selectedCategory, setSelectedCategory] = useState(null);
 
     const hanldeApplyFilter = () =>{
       const filters = {
         price:selectedPrice,
        category:selectedCategory,
       };
-      navigation.navigate('Homepage',{filters});
-    };
+      navigation.navigate('Home',{filters:{price:selectedPrice, category:selectedCategory}});
+    }; // this component will navigate the meals from the homepage to the filter screen
 
     return (
         <SafeAreaView style={styles.container}>
@@ -41,7 +35,7 @@ export default function FilterScreen({navigation}) {
                 <TouchableOpacity style={styles.dropdown}>
                     <Text style={styles.dropdownText}>{sortOption}</Text>
                     <Ionicons name="chevron-down-outline" size={20} color="white" />
-                </TouchableOpacity>
+                </TouchableOpacity> 
                 
                 <TouchableOpacity style={styles.accordionHeader} onPress={() => setPriceExpanded(!priceExpanded)}>
                     <Text style={styles.accordionTitle}>Price</Text>
@@ -62,7 +56,7 @@ export default function FilterScreen({navigation}) {
               </TouchableOpacity>
                     ))}
                     </View>
-                )}
+                )} // this will allow the user to select the price filter option
 
                 <TouchableOpacity style={styles.accordionHeader} onPress={() => setCategoryExpanded(!categoryExpanded)}>
                 <Text style={styles.accordionTitle}>Category</Text>
@@ -71,7 +65,7 @@ export default function FilterScreen({navigation}) {
 
                 {categoryExpanded && (
                   <View style={styles.accordionContent}>
-                  {['Starters', 'Main', 'Desert'].map((option) =>( 
+                  {['Starter', 'Main', 'Dessert'].map((option) =>( 
                     <TouchableOpacity
                     key={option}
                     style={[ styles.filterOption,selectedCategory === option && styles.selectedOption,]}
@@ -82,19 +76,19 @@ export default function FilterScreen({navigation}) {
                     </TouchableOpacity>
                   ))}
                   </View>
-                )}
+                )} // this will allow the user to select the category filter option
 
      
       <TouchableOpacity
         style={styles.Button}
         onPress={hanldeApplyFilter}>
         <Text style={styles.navText}> Apply filter </Text>
-      </TouchableOpacity>  // will allow the user to actually apply the 
-
+      </TouchableOpacity> 
             </ScrollView>
         </SafeAreaView>
     );
-}
+}  // will allow the user to actually apply the filtered choices 
+
 
 const styles = StyleSheet.create({
     container: {
@@ -156,6 +150,5 @@ flexDirection: 'row',
 filterOption:{
 
 },
-
 
 });
