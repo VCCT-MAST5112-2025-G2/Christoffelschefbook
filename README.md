@@ -5,6 +5,9 @@
 # Youtube Link :
 https://youtu.be/Mk6rHnNFTl0
 
+# Youtube link (POE) :
+https://www.youtube.com/watch?v=Ituzx3vtmYQ
+
 # Github link: 
 https://github.com/VCCT-MAST5112-2025-G2/Christoffelschefbook.git
 
