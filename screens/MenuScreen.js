@@ -1,10 +1,20 @@
 import React, {useState} from "react";
 import{useRouter} from 'expo-router';
-import { View, Text,StyleSheet,Image, FlatList, TouchableOpacity,ScrollView, TextInput} from "react-native";
+import { View, Text,StyleSheet,Image, FlatList, TouchableOpacity,ScrollView, TextInput,Alert} from "react-native";
+import Checkbox from 'expo-checkbox';
+import {useRoute} from '@react-navigation/native';
 
-export default function HomepageScreen({navigation}) {
+
+
+export default function MenuScreen ({navigation}) {
+
+  const route = useRoute();
+  const {filters} = route.params || {};
+  const [mainMenu, setMainmenu] = useState ([]);
 const [showForm, setShowForm] = useState(false); // Component state mananging the add meal form 
 const router = useRouter();
+const [showRemoveList, setShowRemoveList] = useState(false);
+const [selectedMeals, setSelectedMeals] = useState([]);
 
 const [newMeal, setNewMeal] = useState({
   name:"",
@@ -15,10 +25,10 @@ const [newMeal, setNewMeal] = useState({
 }); // Component state for managing the new meal inputs
 
 const handleAddMeal = () =>{
-  if (!newMeal.name || !newMeal.price){
-    alert("Please fill in name and price");
+  if (!newMeal.name || !newMeal.price || !newMeal.description){
+    Alert.alert("Missing info", "Please fill in name and price");
     return;
-  
+
   }
   const newItem = {
     id:(mainMenu.length + 1).toString(),
@@ -29,31 +39,88 @@ const handleAddMeal = () =>{
     category:newMeal.category,
   }; // New meal object created from the form inputs
 
-  setMainmenu([...mainMenu,newItem]);
-  alert("Meal added! Total meals:" + (mainMenu.length + 1));
-  setNewMeal({name:"",Description:"",price:"",image:"",});
-  setShowForm(false);
-}; // Function to handle adding a new meal to the main menu
+  const updatedMenu = [...mainMenu, newItem];
+    setMainmenu(updatedMenu);
 
-  
-  
+      console.log("Alert shoud show now!");
+
+Alert.alert(
+  "Meal Added!",
+`Meal successfully added.\nTotal meals: ${updatedMenu.length}`,
+[{text:"OK",
+onPress: () => {
+  setShowForm(false);
+ setNewMeal({name:"",Description:"",price:"",category:"",image:""});
+}
+}
+]
+ ); 
+ // Function to handle adding a new meal to the main menu
+};
+
+
+const toggleMealSelection = (id) => {
+  if (selectedMeals.includes(id)){
+    setSelectedMeals(selectedMeals.filter((mealId) => mealId !== id));
+  } else{ setSelectedMeals([...selectedMeals,id]);
+  }
+};
+
+const handleRemoveMeals = () => {
+  if(selectedMeals.length===0){
+    Alert.alert("No selection", "Please select at least one meal to remove.");
+    return;
+  }
+
+  const updatedMenu=mainMenu.filter(
+    (meal) => !selectedMeals.includes(meal.id)
+  );
+
+  setMainmenu(updatedMenu);
+  setSelectedMeals([]);
+  setShowRemoveList(false);
+
+  Alert.alert("Meals removed", "Selected meals have been removed");
+};
+
+  const renderMeal = ({item}) => (
+    <View style ={styles.card}>
+    {item.image && <Image source={item.image} style={styles.image}/>}
+    <Text style={styles.title}>{item.name}</Text>
+    <Text style={styles.description}>{item.description}</Text>
+    <Text style={styles.price}>{item.price}</Text>
+    <Text style={styles.category}>Category:{item.category}</Text>
+
+  {showRemoveList && (
+    <View style={
+      styles.checkboxContainer}>
+      <Checkbox value={
+        selectedMeals.includes(item.id)
+      } onValueChange={() => toggleMealSelection(item.id)}/>
+      <Text style={styles.checkboxLabel}> Select to remove </Text>
+      </View>
+  )}
+    </View>
+  );
 
     return (
       <ScrollView>
            <TouchableOpacity style = {styles.Button} onPress = {()=>setShowForm(true)}>
-           <Text style={styles.navText}>Add</Text>
+           <Text style={styles.navText}>Add Meal </Text>
            </TouchableOpacity>
 
       <TouchableOpacity
         style={styles.Button}
-        onPress={() => navigation.navigate('Welcome')}>
-        <Text style={styles.navText}> Remove </Text>
+        onPress={() => setShowRemoveList(!showRemoveList)}>
+        <Text style={styles.navText}>
+        {showRemoveList ? "Cancel Remove":"Remove Meal"}
+        </Text>
       </TouchableOpacity>
 
             <TouchableOpacity
         style={styles.Button}
-        onPress={() => navigation.navigate('Welcome')}>
-        <Text style={styles.navText}> Back </Text>
+        onPress={() => navigation.navigate('Filter')}>
+        <Text style={styles.navText}> Filter </Text>
       </TouchableOpacity>
 
 {showForm && (
@@ -80,8 +147,9 @@ const handleAddMeal = () =>{
            value={newMeal.image}
            onChangeText={(text)=>setNewMeal({...newMeal, image :text})}/>
 
-           <Text styles={{marginTop:10, fontWeight:'bold'}}>Select Meal Category:</Text>
+           <Text style={{marginTop:10, fontWeight:'bold'}}>Select Meal Category:</Text>
            <View style={{flexDirection:'row', justifyContent:'space-around', marginVertical:10}}>
+
            {['Starter', 'Main', 'Dessert'].map(type=>(
              <TouchableOpacity key={type}
              style={{
@@ -109,9 +177,26 @@ const handleAddMeal = () =>{
    </View>
         </View>
 )}
-        </ScrollView>
-    )
-};
+<FlatList
+data={mainMenu}
+renderItem={renderMeal}
+keyExtractor={(item) => item.id}
+contentContainerStyle={{paddingBottom:100}}/>
+
+{showRemoveList && (
+  <TouchableOpacity style={styles.deleteButton} onPress={handleRemoveMeals}>
+  <Text style={styles.navText}> Deleted Selected Meals</Text>
+  </TouchableOpacity>
+)}
+
+       <TouchableOpacity
+        style={styles.Button}
+        onPress={() => navigation.navigate('Home')}>
+        <Text style={styles.navText}> Back </Text>
+      </TouchableOpacity>
+      </ScrollView>
+    );
+}
 
 const styles = StyleSheet.create({
   container: {
@@ -181,6 +266,22 @@ Button: {
     marginBottom: 20,
     },
 
+    category: {
+      fontSize:14,
+      color:'#333',
+      margin:4,
+    },
+
+    deleteButton:{
+ backgroundColor: '#fff',
+    padding: 10,
+    borderRadius: 5,
+    alignItems: 'center',
+    marginBottom: 20,
+    width: '50%',
+    },
+
 });
+
 
     
