@@ -10,7 +10,64 @@ export default function MenuScreen ({navigation}) {
 
   const route = useRoute();
   const {filters} = route.params || {};
-  const [mainMenu, setMainmenu] = useState ([]);
+  const [mainMenu, setMainmenu] = useState ([
+    { id:'1',
+        name:'Beef Welligton',
+        Description:'A filet steak coated with mushroom duxelles and Parm ham, wrapped in puff pastry, and baked to perfection.',
+        category:'Main',
+        image:{uri:'https://snack-code-uploads.s3.us-west-1.amazonaws.com/~asset/2d5df432941d8445a5a1d8f907281213'},
+        price:'R450.00',
+    },
+
+    { id:'2',
+        name:'Lobster with Red Pepper Sauce',
+        Description:'A luxurious combination of sweet lobster paired with cardamom infused jus and a vibrant red pepper sauce.',
+        category:'Starter',
+      image:{uri:'https://snack-code-uploads.s3.us-west-1.amazonaws.com/~asset/a76d7c64e51bdd000ff21db9696c643e'},
+        price:'R350.00',
+    },
+
+    { id:'3',
+        name:'Elegant lobster bisque with foie gras',
+        Description:'A lobster, cream and aromatic vegetables along with a decadent addition of foie gras.',
+        category:'Starter',
+        image:{uri:'https://snack-code-uploads.s3.us-west-1.amazonaws.com/~asset/4011cbbd84f6c995147d45c285b451c8'},
+        price:'R300.00',
+    },
+
+    { id:'4',
+        name:'Kaiseki Wagyu Sukiyaki',
+        Description:'Thinly sliced Wagyu beef cooked in a savory-sweet broth with vegetables, tofu, and noodles, served in a traditional Japanese style.',
+        category:'Main',
+        image:{uri:'https://snack-code-uploads.s3.us-west-1.amazonaws.com/~asset/bc828779cdb78dc9e7061b012b9ab9cb'},
+        price:'R250.00'
+    },
+
+    { id:'5',
+        name:'Wagyu Steak',
+        Description:'A premium cut of Wagyu beef, served with roasted vegetables.',
+        Others:'charred asparagus, light salad with citrus vinaigrette, roasted potatoes ',
+        category:'Main',
+       image:{uri:'https://snack-code-uploads.s3.us-west-1.amazonaws.com/~asset/b2886313ed81cb039207487e9ebe7896'},
+        price:'R350.00'
+    },
+
+    { id:'6',
+        name:'Herb-Crusted Rack of Lamb',
+        Description:'A succulent rack of lamb coated with a fragrant herb crust, served with a red wine reduction and seasonal vegetables.',
+        category:'Main',
+     image:{uri:'https://snack-code-uploads.s3.us-west-1.amazonaws.com/~asset/aaa66b5560d6bd24a17decac87151123'},
+        price:'R300.00'
+    },
+
+    { id:'7',
+        name:'Classic Fish and Chips',
+        Description:'Crispy battered fish served with golden fries, tartar sauce, and a wedge of lemon.',
+        category:'Main',
+    image:{uri:'https://snack-code-uploads.s3.us-west-1.amazonaws.com/~asset/a7af2a1adcab84a96138de9e47b5b237'},
+        price:'R230.00'
+    },
+  ]); // this mainMenu will show the list of meals on the menu screen without the images so that its easier when the user wants to remove meals
 const [showForm, setShowForm] = useState(false); // Component state mananging the add meal form 
 const router = useRouter();
 const [showRemoveList, setShowRemoveList] = useState(false);
@@ -18,7 +75,7 @@ const [selectedMeals, setSelectedMeals] = useState([]);
 
 const [newMeal, setNewMeal] = useState({
   name:"",
-  Description:"",
+  description:"",
   price:"",
   category:"",
   image:"",
@@ -33,7 +90,7 @@ const handleAddMeal = () =>{
   const newItem = {
     id:(mainMenu.length + 1).toString(),
     name: newMeal.name,
-    Description:newMeal.Description,
+    description:newMeal.description,
     price:newMeal.price,
     image:newMeal.image?{uri:newMeal.image} :null,
     category:newMeal.category,
@@ -81,7 +138,7 @@ const handleRemoveMeals = () => {
   setShowRemoveList(false);
 
   Alert.alert("Meals removed", "Selected meals have been removed");
-};
+}; // this alert will show after the user has removed the selected meals
 
   const renderMeal = ({item}) => (
     <View style ={styles.card}>
@@ -101,7 +158,7 @@ const handleRemoveMeals = () => {
       </View>
   )}
     </View>
-  );
+  ); // this will render each meal on the menu screen along with the checkbox to select meals to remove
 
     return (
       <ScrollView>
@@ -117,11 +174,6 @@ const handleRemoveMeals = () => {
         </Text>
       </TouchableOpacity>
 
-            <TouchableOpacity
-        style={styles.Button}
-        onPress={() => navigation.navigate('Filter')}>
-        <Text style={styles.navText}> Filter </Text>
-      </TouchableOpacity>
 
 {showForm && (
            <View style={styles.formContainer}>
@@ -134,8 +186,8 @@ const handleRemoveMeals = () => {
 
            <TextInput style={styles.input}
            placeholder="Description"
-           value={newMeal.Description}
-           onChangeText={(text)=>setNewMeal({...newMeal, Description:text})}/>
+           value={newMeal.description}
+           onChangeText={(text)=>setNewMeal({...newMeal, description:text})}/>
 
             <TextInput style={styles.input}
            placeholder="Price (eg.R230)"
@@ -187,16 +239,22 @@ contentContainerStyle={{paddingBottom:100}}/>
   <TouchableOpacity style={styles.deleteButton} onPress={handleRemoveMeals}>
   <Text style={styles.navText}> Deleted Selected Meals</Text>
   </TouchableOpacity>
-)}
-
+)} 
+            <TouchableOpacity
+        style={styles.Button}
+        onPress={() => navigation.navigate('Filter')}>
+        <Text style={styles.navText}> Filter </Text>
+      </TouchableOpacity>
        <TouchableOpacity
         style={styles.Button}
         onPress={() => navigation.navigate('Home')}>
         <Text style={styles.navText}> Back </Text>
       </TouchableOpacity>
       </ScrollView>
-    );
-}
+    );// this will list all the meals the user will remove after selected what meals they want to remove 
+// this button will take the user back to the homepage screen
+ // this button will take the user to the filter page
+} 
 
 const styles = StyleSheet.create({
   container: {
@@ -282,6 +340,3 @@ Button: {
     },
 
 });
-
-
-    
